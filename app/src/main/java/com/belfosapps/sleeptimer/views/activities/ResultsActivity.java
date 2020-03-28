@@ -1,7 +1,20 @@
 package com.belfosapps.sleeptimer.views.activities;
 
+import android.app.AlarmManager;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.AlarmClock;
+import android.view.View;
+import android.widget.Button;
+import android.widget.NumberPicker;
+import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.belfosapps.sleeptimer.R;
 import com.belfosapps.sleeptimer.contracts.ResultsContract;
 import com.belfosapps.sleeptimer.di.components.DaggerMVPComponent;
 import com.belfosapps.sleeptimer.di.components.MVPComponent;
@@ -9,32 +22,55 @@ import com.belfosapps.sleeptimer.di.modules.ApplicationModule;
 import com.belfosapps.sleeptimer.di.modules.MVPModule;
 import com.belfosapps.sleeptimer.pojo.Time;
 import com.belfosapps.sleeptimer.presenters.ResultsPresenter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
-
-import com.belfosapps.sleeptimer.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ResultsActivity extends AppCompatActivity implements ResultsContract.View {
 
+    private static final String TAG = "ResultsActivity";
     /**************************************** Declarations ****************************************/
     private MVPComponent mvpComponent;
     @Inject
     ResultsPresenter mPresenter;
+    private ArrayList<String> times;
 
     /**************************************** View Declarations ***********************************/
+    @BindView(R.id.indication)
+    TextView indication;
+    @BindView(R.id.times)
+    NumberPicker mWheel;
+    @BindView(R.id.set_alarm)
+    Button set_alarm;
 
     /**************************************** Click Listeners *************************************/
+    @OnClick(R.id.back)
+    public void goBack() {
+        onBackPressed();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @OnClick(R.id.set_alarm)
+    public void setAlarm() {
+        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+        intent.putExtra(AlarmClock.EXTRA_HOUR,
+                Integer.parseInt(times.get(mWheel.getValue()).split(":")[0]));
+        intent.putExtra(AlarmClock.EXTRA_MINUTES,
+                Integer.parseInt(times.get(mWheel.getValue()).split(":")[1].split(" ")[0]));
+        if (times.get(mWheel.getValue()).split(":")[1].split(" ")[1].equals("AM"))
+            intent.putExtra(AlarmClock.EXTRA_IS_PM, false);
+        else intent.putExtra(AlarmClock.EXTRA_IS_PM, true);
+
+        startActivity(intent);
+
+    }
 
     /**************************************** Essential Methods ***********************************/
     @Override
@@ -70,7 +106,20 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
     }
 
     /**************************************** Methods *********************************************/
-    private void initUI() { }
+    private void initUI() {
+        if (getIntent().getBooleanExtra("alarm", false)) {
+            set_alarm.setVisibility(View.VISIBLE);
+            indication.setText("If you sleep right now, you should wake up at one of the following times:");
+        } else {
+            set_alarm.setVisibility(View.INVISIBLE);
+            indication.setText("You should try to sleep in the following times:");
+        }
+
+        times = getIntent().getStringArrayListExtra("times");
+        mWheel.setMinValue(0);
+        mWheel.setMaxValue(times.size() - 1);
+        mWheel.setDisplayedValues(times.toArray(new String[times.size()]));
+    }
 
     @Override
     public void initRecyclerView(ArrayList<Time> times) {

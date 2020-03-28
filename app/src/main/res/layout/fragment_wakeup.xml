@@ -1,14 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".views.fragments.WakeupFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/wake_up_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="32dp"
+            android:text="I want to wake up at:"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hours"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/hours"
+            app:layout_constraintEnd_toEndOf="@id/hours"
+            app:layout_constraintBottom_toTopOf="@id/hours"
+            android:textColor="@android:color/white"/>
+
+        <NumberPicker
+            android:id="@+id/hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.Picker"
+            app:layout_constraintBottom_toBottomOf="@id/minutes"
+            app:layout_constraintEnd_toStartOf="@id/minutes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/minutes" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minutes"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/minutes"
+            app:layout_constraintEnd_toEndOf="@id/minutes"
+            app:layout_constraintBottom_toTopOf="@id/minutes"
+            android:textColor="@android:color/white"/>
+
+        <NumberPicker
+            android:id="@+id/minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:theme="@style/AppTheme.Picker"
+            app:layout_constraintBottom_toTopOf="@id/wake_up_calculate"
+            app:layout_constraintEnd_toStartOf="@id/am_pm"
+            app:layout_constraintStart_toEndOf="@id/hours"
+            app:layout_constraintTop_toBottomOf="@id/wake_up_text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AM/PM"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/am_pm"
+            app:layout_constraintEnd_toEndOf="@id/am_pm"
+            app:layout_constraintBottom_toTopOf="@id/am_pm"
+            android:textColor="@android:color/white"/>
+
+        <NumberPicker
+            android:id="@+id/am_pm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.Picker"
+            app:layout_constraintBottom_toBottomOf="@id/minutes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/minutes"
+            app:layout_constraintTop_toTopOf="@id/minutes" />
+
+        <Button
+            android:id="@+id/wake_up_calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            android:text="Calculate"
+            android:background="@drawable/button_rounded"
+            android:textColor="@android:color/white"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

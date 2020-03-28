@@ -2,17 +2,20 @@ package com.belfosapps.sleeptimer.views.fragments;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.NumberPicker;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.belfosapps.sleeptimer.R;
+import com.belfosapps.sleeptimer.presenters.MainPresenter;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,14 +23,31 @@ import butterknife.ButterKnife;
 public class WakeupFragment extends Fragment {
 
     /****************************************** Declarations **************************************/
+    private MainPresenter mPresenter;
+    private String[] am_pm = {"AM", "PM"};
 
     /****************************************** View Declarations *********************************/
+    @BindView(R.id.hours)
+    NumberPicker hoursPicker;
+    @BindView(R.id.minutes)
+    NumberPicker minutesPicker;
+    @BindView(R.id.am_pm)
+    NumberPicker am_pmPicker;
 
     /**************************************** Click Listeners *************************************/
+    @OnClick(R.id.wake_up_calculate)
+    public void calculate() {
+        String time = hoursPicker.getValue() + ":" + minutesPicker.getValue() + " " + am_pm[am_pmPicker.getValue()];
+        mPresenter.calculateTime(time, false);
+    }
 
     /****************************************** Constructor ***************************************/
     public WakeupFragment() {
         // Required empty public constructor
+    }
+
+    public WakeupFragment(MainPresenter mPresenter) {
+        this.mPresenter = mPresenter;
     }
 
     /****************************************** Essential Methods *********************************/
@@ -47,6 +67,15 @@ public class WakeupFragment extends Fragment {
 
     /****************************************** Methods *******************************************/
     private void initUI() {
+        hoursPicker.setMinValue(1);
+        hoursPicker.setMaxValue(12);
+        minutesPicker.setMinValue(0);
+        minutesPicker.setMaxValue(59);
+        am_pmPicker.setMinValue(0);
+        am_pmPicker.setMaxValue(1);
+
+
+        am_pmPicker.setDisplayedValues(am_pm);
     }
 
 }

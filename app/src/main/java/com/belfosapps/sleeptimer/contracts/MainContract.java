@@ -4,6 +4,8 @@ import com.belfosapps.sleeptimer.base.BasePresenter;
 import com.belfosapps.sleeptimer.base.BaseView;
 import com.belfosapps.sleeptimer.utils.Config;
 
+import java.util.ArrayList;
+
 
 public interface MainContract {
 
@@ -15,9 +17,9 @@ public interface MainContract {
 
         //void loadAd(AdView ad);
 
-        void getTime(String time);
+        void calculateTime(String time, boolean isAlarm);
 
-        void goToResults();
+        void goToResults(ArrayList<String> times, boolean isAlarm);
 
         Config getConfig();
     }
@@ -28,7 +30,7 @@ public interface MainContract {
 
         void initTabLayout();
 
-        void enableTabAt(int i);
+        void enableTabAt(int x);
 
     }
 
