@@ -4,6 +4,7 @@ import androidx.multidex.MultiDexApplication;
 import com.belfosapps.sleeptimer.di.components.ApplicationComponent;
 import com.belfosapps.sleeptimer.di.components.DaggerApplicationComponent;
 import com.belfosapps.sleeptimer.di.modules.ApplicationModule;
+import com.onesignal.OneSignal;
 
 
 public class BaseApplication extends MultiDexApplication {
@@ -18,6 +19,12 @@ public class BaseApplication extends MultiDexApplication {
 
         //Inject the Component Here
         appComponent.inject(this);
+
+        //Init One Signal
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
     }
 
     public ApplicationComponent getComponent() {

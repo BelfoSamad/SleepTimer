@@ -1,6 +1,7 @@
 package com.belfosapps.sleeptimer.views.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,11 +67,14 @@ public class WakeupFragment extends Fragment {
     }
 
     /****************************************** Methods *******************************************/
+    @SuppressLint("DefaultLocale")
     private void initUI() {
         hoursPicker.setMinValue(1);
         hoursPicker.setMaxValue(12);
+        hoursPicker.setFormatter(i -> String.format("%02d", i));
         minutesPicker.setMinValue(0);
         minutesPicker.setMaxValue(59);
+        minutesPicker.setFormatter(i -> String.format("%02d", i));
         am_pmPicker.setMinValue(0);
         am_pmPicker.setMaxValue(1);
 

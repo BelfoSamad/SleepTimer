@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
     tools:context=".views.fragments.WakeupFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,9 +17,9 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="96dp"
             android:layout_marginEnd="32dp"
-            android:text="I want to wake up at:"
+            android:text="@string/wake_up_text"
             android:textAlignment="center"
-            android:textColor="@android:color/white"
+            android:textColor="@color/primaryTextColor"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,18 +28,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hours"
+            android:text="@string/hours"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/hours"
             app:layout_constraintEnd_toEndOf="@id/hours"
             app:layout_constraintBottom_toTopOf="@id/hours"
-            android:textColor="@android:color/white"/>
+            android:textColor="@color/primaryTextColor"/>
 
         <NumberPicker
             android:id="@+id/hours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.Picker"
+            android:theme="@style/AppTheme.TimerPicker"
             app:layout_constraintBottom_toBottomOf="@id/minutes"
             app:layout_constraintEnd_toStartOf="@id/minutes"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,19 +49,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Minutes"
+            android:text="@string/minutes"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/minutes"
             app:layout_constraintEnd_toEndOf="@id/minutes"
             app:layout_constraintBottom_toTopOf="@id/minutes"
-            android:textColor="@android:color/white"/>
+            android:textColor="@color/primaryTextColor"/>
 
         <NumberPicker
             android:id="@+id/minutes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:theme="@style/AppTheme.Picker"
+            android:theme="@style/AppTheme.TimerPicker"
             app:layout_constraintBottom_toTopOf="@id/wake_up_calculate"
             app:layout_constraintEnd_toStartOf="@id/am_pm"
             app:layout_constraintStart_toEndOf="@id/hours"
@@ -71,18 +70,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AM/PM"
+            android:text="@string/am_pm"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/am_pm"
             app:layout_constraintEnd_toEndOf="@id/am_pm"
             app:layout_constraintBottom_toTopOf="@id/am_pm"
-            android:textColor="@android:color/white"/>
+            android:textColor="@color/primaryTextColor"/>
 
         <NumberPicker
             android:id="@+id/am_pm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.Picker"
+            android:theme="@style/AppTheme.TimerPicker"
             app:layout_constraintBottom_toBottomOf="@id/minutes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/minutes"
@@ -93,9 +92,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="64dp"
-            android:text="Calculate"
+            android:text="@string/calculate"
             android:background="@drawable/button_rounded"
-            android:textColor="@android:color/white"
+            android:textColor="@color/primaryTextColor"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:paddingTop="8dp"

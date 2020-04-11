@@ -5,19 +5,17 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.belfosapps.sleeptimer.R;
 import com.belfosapps.sleeptimer.models.SharedPreferencesHelper;
 import com.google.ads.consent.ConsentForm;
 import com.google.ads.consent.ConsentFormListener;
 import com.google.ads.consent.ConsentInfoUpdateListener;
 import com.google.ads.consent.ConsentInformation;
 import com.google.ads.consent.ConsentStatus;
-
-/*
 import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-*/
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -44,7 +42,7 @@ public class GDPR {
         Log.d(TAG, "checkForConsent: Checking For Consent");
 
         ConsentInformation consentInformation = ConsentInformation.getInstance(mContext);
-        String[] publisherIds = {config.getPublisherId()};
+        String[] publisherIds = {mContext.getResources().getString(R.string.PUBLISHER_ID)};
 
         consentInformation.requestConsentInfoUpdate(publisherIds, new ConsentInfoUpdateListener() {
             @Override
@@ -121,8 +119,6 @@ public class GDPR {
                                     sharedPreferencesHelper.setAdPersonalized(true);
                                     break;
                                 case NON_PERSONALIZED:
-                                    sharedPreferencesHelper.setAdPersonalized(false);
-                                    break;
                                 case UNKNOWN:
                                     sharedPreferencesHelper.setAdPersonalized(false);
                                     break;
@@ -143,44 +139,41 @@ public class GDPR {
         form.load();
     }
 
-    /**
-     * public void showPersonalizedAdBanner(AdView ad) {
-     * AdRequest adRequest = new AdRequest.Builder()
-     * .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-     * .build();
-     * ad.loadAd(adRequest);
-     * }
-     * <p>
-     * public void showNonPersonalizedAdBanner(AdView ad) {
-     * AdRequest adRequest = new AdRequest.Builder()
-     * .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-     * .addNetworkExtrasBundle(AdMobAdapter.class, getNonPersonalizedAdsBundle())
-     * .build();
-     * ad.loadAd(adRequest);
-     * }
-     * <p>
-     * public void loadPersonalizedInterstitialAd(InterstitialAd mInterstitialAd) {
-     * AdRequest adRequest = new AdRequest.Builder()
-     * .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-     * .build();
-     * mInterstitialAd.loadAd(adRequest);
-     * }
-     * <p>
-     * public void loadNonPersonalizedInterstitialAd(InterstitialAd mInterstitialAd) {
-     * AdRequest request = new AdRequest.Builder()
-     * .addNetworkExtrasBundle(AdMobAdapter.class, getNonPersonalizedAdsBundle())
-     * .build();
-     * <p>
-     * mInterstitialAd.loadAd(request);
-     * }
-     * <p>
-     * private Bundle getNonPersonalizedAdsBundle() {
-     * Bundle extras = new Bundle();
-     * extras.putString("npa", "1");
-     * <p>
-     * return extras;
-     * }
-     */
+    public void showPersonalizedAdBanner(AdView ad) {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        ad.loadAd(adRequest);
+    }
+
+    public void showNonPersonalizedAdBanner(AdView ad) {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addNetworkExtrasBundle(AdMobAdapter.class, getNonPersonalizedAdsBundle())
+                .build();
+        ad.loadAd(adRequest);
+    }
+
+    public void loadPersonalizedInterstitialAd(InterstitialAd mInterstitialAd) {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mInterstitialAd.loadAd(adRequest);
+    }
+
+    public void loadNonPersonalizedInterstitialAd(InterstitialAd mInterstitialAd) {
+        AdRequest request = new AdRequest.Builder()
+                .addNetworkExtrasBundle(AdMobAdapter.class, getNonPersonalizedAdsBundle())
+                .build();
+        mInterstitialAd.loadAd(request);
+    }
+
+    private Bundle getNonPersonalizedAdsBundle() {
+        Bundle extras = new Bundle();
+        extras.putString("npa", "1");
+        return extras;
+    }
+
     private void showForm() {
         if (form == null) {
             Log.d(TAG, "Consent form is null");

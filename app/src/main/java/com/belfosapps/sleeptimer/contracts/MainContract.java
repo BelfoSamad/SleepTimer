@@ -3,6 +3,7 @@ package com.belfosapps.sleeptimer.contracts;
 import com.belfosapps.sleeptimer.base.BasePresenter;
 import com.belfosapps.sleeptimer.base.BaseView;
 import com.belfosapps.sleeptimer.utils.Config;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public interface MainContract {
 
         void checkGDPRConsent();
 
-        //void loadAd(AdView ad);
+        void loadAd(AdView ad);
 
         void calculateTime(String time, boolean isAlarm);
 
@@ -25,6 +26,8 @@ public interface MainContract {
     }
 
     interface View extends BaseView {
+
+        void initAdBanner();
 
         void initViewPager();
 

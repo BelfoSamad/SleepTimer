@@ -1,3 +1,16 @@
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/'}
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:0.12.4'
+    }
+}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
+repositories {
+    maven { url 'https://maven.google.com' }
+}
 apply plugin: 'com.android.application'
 
 def ButterKnifeVersion = "10.2.1"
@@ -11,6 +24,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [
+                onesignal_app_id: 'ec92e87b-f32d-4ac1-9b75-999b51b32415',
+                onesignal_google_project_number: 'REMOTE'
+        ]
     }
     buildTypes {
         release {
@@ -39,6 +56,15 @@ dependencies {
     //Multidex
     implementation 'androidx.multidex:multidex:2.0.1'
 
+    //One Signal
+    implementation 'com.onesignal:OneSignal:3.13.0'
+
+    //Admob
+    implementation 'com.google.android.gms:play-services-ads:19.0.1'
+
+    //Consent "GDPR"
+    implementation 'com.google.android.ads.consent:consent-library:1.0.8'
+
     //ButterKnife
     implementation "com.jakewharton:butterknife:$ButterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$ButterKnifeVersion"
@@ -56,7 +82,4 @@ dependencies {
     //TimePicker
     implementation 'com.github.lany192:DateTimePicker:1.0.5'
     implementation 'com.github.lany192:NumberPicker:1.0.3'
-
-    //Wheel View
-    implementation 'com.github.BlackBoxVision:material-wheel-view:v0.0.1'
 }

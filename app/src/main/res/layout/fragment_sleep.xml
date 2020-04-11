@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".views.fragments.SleepFragment"
-    android:background="@android:color/black">
+    tools:context=".views.fragments.SleepFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,9 +17,9 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="128dp"
             android:layout_marginEnd="32dp"
-            android:text="If I sleep Now, I should wake up at:"
+            android:text="@string/sleep_text"
             android:textAlignment="center"
-            android:textColor="@android:color/white"
+            android:textColor="@color/primaryTextColor"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,9 +29,9 @@
             android:id="@+id/sleep_calculate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calculate"
+            android:text="@string/calculate"
             android:background="@drawable/button_rounded"
-            android:textColor="@android:color/white"
+            android:textColor="@color/primaryTextColor"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:paddingTop="8dp"

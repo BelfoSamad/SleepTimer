@@ -18,6 +18,8 @@ import com.belfosapps.sleeptimer.utils.Config;
 import com.belfosapps.sleeptimer.views.adapters.MainPagerAdapter;
 import com.belfosapps.sleeptimer.views.fragments.SleepFragment;
 import com.belfosapps.sleeptimer.views.fragments.WakeupFragment;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.view.View.GONE;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
@@ -44,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     ViewPager mViewPager;
     @BindView(R.id.tab_layout_main)
     TabLayout mTab;
+    @BindView(R.id.adView_main)
+    AdView ad;
 
     /**************************************** Essential Methods ***********************************/
     @Override
@@ -62,8 +68,31 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         //Attach View To Presenter
         mPresenter.attach(this);
 
+        //Init Ad Banner
+        initAdBanner();
         //Init View Pager
         initViewPager();
+
+        //Check For Consent
+        mPresenter.checkGDPRConsent();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ad.pause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ad.destroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ad.resume();
     }
 
     @Override
@@ -79,6 +108,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     /**************************************** Methods *********************************************/
+    @Override
+    public void initAdBanner() {
+        if (getResources().getBoolean(R.bool.AD_BANNER_Enabled)) {
+            ad.setAdUnitId(getResources().getString(R.string.ADMOB_BANNER_ID));
+            ad.setAdSize(AdSize.SMART_BANNER);
+            mPresenter.loadAd(ad);
+        } else {
+            ad.setVisibility(GONE);
+        }
+    }
+
     @Override
     public void initViewPager() {
         ArrayList<Fragment> fragments = new ArrayList<>();
@@ -131,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void enableTabAt(int x) {
         TabLayout.Tab tab = mTab.getTabAt(x);
 
-        for (int i = 0; i < Config.tabTitles.length; i++) {
+        for (int i = 0; i < getResources().getStringArray(R.array.tab_titles).length; i++) {
             if (i == x) {
                 assert tab != null;
                 Objects.requireNonNull(tab.getCustomView()).findViewById(R.id.featured_tab_icon).setVisibility(View.VISIBLE);
@@ -139,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             } else {
                 TabLayout.Tab tab1 = mTab.getTabAt(i);
                 assert tab1 != null;
-                Objects.requireNonNull(tab1.getCustomView()).findViewById(R.id.featured_tab_icon).setVisibility(View.GONE);
+                Objects.requireNonNull(tab1.getCustomView()).findViewById(R.id.featured_tab_icon).setVisibility(GONE);
             }
         }
     }

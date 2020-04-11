@@ -1,7 +1,24 @@
 <resources>
+    <!-- Basics -->
     <string name="app_name">SleepTimer</string>
-    <string name="title_activity_results">ResultsActivity</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="APPLICATION_ID">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="ADMOB_BANNER_ID">test</string>
+    <string name="PUBLISHER_ID">pub-4679171106713552</string>
+    <item name="GDPR_Enabled" type="bool">false</item>
+    <item name="AD_BANNER_Enabled" type="bool">false</item>
+    <string-array name="tab_titles">
+        <item>Wake Up</item>
+        <item>Sleep</item>
+    </string-array>
+    <!-- Main Page -->
+    <string name="sleep_text">If I sleep Now, I should wake up at:</string>
+    <string name="wake_up_text">I want to wake up at:</string>
+    <string name="calculate">Calculate</string>
+    <!-- Time Picker -->
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="am_pm">AM/PM</string>
+    <!-- Results Page -->
+    <string name="set_alarm">Set Alarm</string>
+    <string name="sleep_note">The average human takes fourteen minutes to fall asleep, so plan accordingly!</string>
 </resources>
