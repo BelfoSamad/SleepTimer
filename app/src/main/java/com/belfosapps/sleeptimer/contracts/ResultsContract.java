@@ -21,9 +21,6 @@ public interface ResultsContract {
 
     interface View extends BaseView {
 
-        void initRecyclerView(ArrayList<Time> times);
-
-        void updateRecyclerView();
 
     }
 

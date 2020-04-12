@@ -19,6 +19,8 @@
     <string name="minutes">Minutes</string>
     <string name="am_pm">AM/PM</string>
     <!-- Results Page -->
+    <string name="sleep_result_text">If you sleep right now, you should wake up at one of the following times:</string>
+    <string name="wakeup_result_text">You should try to sleep in the following times:</string>
     <string name="set_alarm">Set Alarm</string>
     <string name="sleep_note">The average human takes fourteen minutes to fall asleep, so plan accordingly!</string>
 </resources>

@@ -8,22 +8,26 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.belfosapps.sleeptimer.R;
 
 import java.util.ArrayList;
 
-public class MainPagerAdapter extends FragmentPagerAdapter {
+public class MainPagerAdapter extends FragmentStateAdapter {
 
     /*************************************** Declarations *****************************************/
     private ArrayList<Fragment> fragments;
     private Context context;
 
+
     /*************************************** Constructor ******************************************/
-    public MainPagerAdapter(@NonNull FragmentManager fm, ArrayList<Fragment> fragments, Context context) {
-        super(fm);
+
+    public MainPagerAdapter(@NonNull FragmentActivity fragmentActivity, ArrayList<Fragment> fragments, Context context) {
+        super(fragmentActivity);
         this.fragments = fragments;
         this.context = context;
     }
@@ -31,12 +35,12 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     /*************************************** Methods **********************************************/
     @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         return fragments.get(position);
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return fragments.size();
     }
 

@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class MainPresenter implements MainContract.Presenter {
 
@@ -71,6 +72,13 @@ public class MainPresenter implements MainContract.Presenter {
         } else {
             gdpr.showNonPersonalizedAdBanner(ad);
         }
+    }
+
+    @Override
+    public boolean isRTL(Locale locale) {
+        final int directionality = Character.getDirectionality(locale.getDisplayName().charAt(0));
+        return directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT ||
+                directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC;
     }
 
     @Override

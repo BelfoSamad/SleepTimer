@@ -5,7 +5,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.belfosapps.sleeptimer.R;
 import com.belfosapps.sleeptimer.contracts.MainContract;
@@ -14,13 +15,13 @@ import com.belfosapps.sleeptimer.di.components.MVPComponent;
 import com.belfosapps.sleeptimer.di.modules.ApplicationModule;
 import com.belfosapps.sleeptimer.di.modules.MVPModule;
 import com.belfosapps.sleeptimer.presenters.MainPresenter;
-import com.belfosapps.sleeptimer.utils.Config;
 import com.belfosapps.sleeptimer.views.adapters.MainPagerAdapter;
 import com.belfosapps.sleeptimer.views.fragments.SleepFragment;
 import com.belfosapps.sleeptimer.views.fragments.WakeupFragment;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     /**************************************** View Declarations ***********************************/
     //View Pages
     @BindView(R.id.view_pager)
-    ViewPager mViewPager;
+    ViewPager2 mViewPager;
     @BindView(R.id.tab_layout_main)
     TabLayout mTab;
     @BindView(R.id.adView_main)
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     /**************************************** Essential Methods ***********************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Set Theme
+        setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -129,18 +133,18 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         fragments.add(wakeup);
         fragments.add(sleep);
 
-        mAdapter = new MainPagerAdapter(getSupportFragmentManager(), fragments, MainActivity.this);
+        mAdapter = new MainPagerAdapter(this, fragments, MainActivity.this);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(2);
-
-        mTab.setupWithViewPager(mViewPager);
 
         initTabLayout();
     }
 
     @Override
     public void initTabLayout() {
-        mTab.setupWithViewPager(mViewPager);
+        new TabLayoutMediator(mTab, mViewPager,
+                (tab, position) -> tab.setText("OBJECT " + (position + 1))
+        ).attach();
 
         // Iterate over all tabs and set the custom view
         for (int i = 0; i < mTab.getTabCount(); i++) {

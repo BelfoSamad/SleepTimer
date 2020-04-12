@@ -12,6 +12,7 @@ repositories {
     maven { url 'https://maven.google.com' }
 }
 apply plugin: 'com.android.application'
+//apply plugin: 'com.google.gms.google-services'
 
 def ButterKnifeVersion = "10.2.1"
 android {
@@ -55,6 +56,9 @@ dependencies {
 
     //Multidex
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    //Firebase
+    //implementation 'com.google.firebase:firebase-analytics:17.3.0'
 
     //One Signal
     implementation 'com.onesignal:OneSignal:3.13.0'

@@ -69,7 +69,6 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
         else intent.putExtra(AlarmClock.EXTRA_IS_PM, true);
 
         startActivity(intent);
-
     }
 
     /**************************************** Essential Methods ***********************************/
@@ -109,10 +108,10 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
     private void initUI() {
         if (getIntent().getBooleanExtra("alarm", false)) {
             set_alarm.setVisibility(View.VISIBLE);
-            indication.setText("If you sleep right now, you should wake up at one of the following times:");
+            indication.setText(R.string.sleep_result_text);
         } else {
             set_alarm.setVisibility(View.INVISIBLE);
-            indication.setText("You should try to sleep in the following times:");
+            indication.setText(R.string.wakeup_result_text);
         }
 
         times = getIntent().getStringArrayListExtra("times");
@@ -121,13 +120,4 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
         mWheel.setDisplayedValues(times.toArray(new String[times.size()]));
     }
 
-    @Override
-    public void initRecyclerView(ArrayList<Time> times) {
-
-    }
-
-    @Override
-    public void updateRecyclerView() {
-
-    }
 }
