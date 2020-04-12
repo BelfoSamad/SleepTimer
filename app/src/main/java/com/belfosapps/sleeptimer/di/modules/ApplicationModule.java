@@ -76,7 +76,7 @@ public class ApplicationModule {
      */
     @Provides
     @Singleton
-    GDPR providesGDPR(SharedPreferencesHelper sharedPreferencesHelper, Config config) {
-        return new GDPR(sharedPreferencesHelper,form, mApplication, config);
+    GDPR providesGDPR(SharedPreferencesHelper sharedPreferencesHelper) {
+        return new GDPR(sharedPreferencesHelper,form, mApplication);
     }
 }

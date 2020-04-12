@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "191490833711",
+    "firebase_url": "https://sleeptimer-db51b.firebaseio.com",
+    "project_id": "sleeptimer-db51b",
+    "storage_bucket": "sleeptimer-db51b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191490833711:android:e479081e7c8f611a0175da",
+        "android_client_info": {
+          "package_name": "com.belfosapps.sleeptimer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191490833711-fq4np3t47i5s8e0fqo03bvpv6c6m6olr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgNmeZQ_lVwqjvZrJaAoFk0YNhcedW-KU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191490833711-fq4np3t47i5s8e0fqo03bvpv6c6m6olr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

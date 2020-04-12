@@ -112,8 +112,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void initAdBanner() {
         if (getResources().getBoolean(R.bool.AD_BANNER_Enabled)) {
-            ad.setAdUnitId(getResources().getString(R.string.ADMOB_BANNER_ID));
-            ad.setAdSize(AdSize.SMART_BANNER);
             mPresenter.loadAd(ad);
         } else {
             ad.setVisibility(GONE);

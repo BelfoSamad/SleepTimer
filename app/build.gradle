@@ -12,7 +12,7 @@ repositories {
     maven { url 'https://maven.google.com' }
 }
 apply plugin: 'com.android.application'
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'
 
 def ButterKnifeVersion = "10.2.1"
 android {
@@ -26,7 +26,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [
-                onesignal_app_id: 'ec92e87b-f32d-4ac1-9b75-999b51b32415',
+                onesignal_app_id: '65ea8037-e8e2-4f16-a3c7-24e94ac129c0',
                 onesignal_google_project_number: 'REMOTE'
         ]
     }
@@ -58,7 +58,8 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
     //Firebase
-    //implementation 'com.google.firebase:firebase-analytics:17.3.0'
+    implementation 'com.google.firebase:firebase-analytics:17.3.0'
+    implementation 'com.google.firebase:firebase-messaging:20.1.5'
 
     //One Signal
     implementation 'com.onesignal:OneSignal:3.13.0'

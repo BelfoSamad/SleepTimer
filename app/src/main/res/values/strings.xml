@@ -1,11 +1,11 @@
 <resources>
     <!-- Basics -->
     <string name="app_name">SleepTimer</string>
-    <string name="APPLICATION_ID">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="ADMOB_BANNER_ID">test</string>
+    <string name="APPLICATION_ID">ca-app-pub-2106508532272950~7395652718</string>
+    <string name="ADMOB_BANNER_ID">ca-app-pub-3940256099942544/6300978111</string>
     <string name="PUBLISHER_ID">pub-4679171106713552</string>
-    <item name="GDPR_Enabled" type="bool">false</item>
-    <item name="AD_BANNER_Enabled" type="bool">false</item>
+    <item name="GDPR_Enabled" type="bool">true</item>
+    <item name="AD_BANNER_Enabled" type="bool">true</item>
     <string-array name="tab_titles">
         <item>Wake Up</item>
         <item>Sleep</item>
