@@ -6,7 +6,6 @@ import android.util.Log;
 import com.belfosapps.sleeptimer.R;
 import com.belfosapps.sleeptimer.contracts.MainContract;
 import com.belfosapps.sleeptimer.models.SharedPreferencesHelper;
-import com.belfosapps.sleeptimer.utils.Config;
 import com.belfosapps.sleeptimer.utils.GDPR;
 import com.belfosapps.sleeptimer.views.activities.MainActivity;
 import com.belfosapps.sleeptimer.views.activities.ResultsActivity;
@@ -17,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class MainPresenter implements MainContract.Presenter {
 
@@ -26,12 +24,10 @@ public class MainPresenter implements MainContract.Presenter {
     private MainActivity mView;
     private SharedPreferencesHelper sharedPreferencesHelper;
     private GDPR gdpr;
-    private Config config;
 
     /***************************************** Constructor ****************************************/
-    public MainPresenter(SharedPreferencesHelper sharedPreferencesHelper, Config config, GDPR gdpr) {
+    public MainPresenter(SharedPreferencesHelper sharedPreferencesHelper, GDPR gdpr) {
         this.sharedPreferencesHelper = sharedPreferencesHelper;
-        this.config = config;
         this.gdpr = gdpr;
     }
 
@@ -54,11 +50,6 @@ public class MainPresenter implements MainContract.Presenter {
 
     /***************************************** Methods ********************************************/
     @Override
-    public void refreshConfig() {
-
-    }
-
-    @Override
     public void checkGDPRConsent() {
         if (mView.getResources().getBoolean(R.bool.GDPR_Enabled)) {
             gdpr.checkForConsent();
@@ -72,13 +63,6 @@ public class MainPresenter implements MainContract.Presenter {
         } else {
             gdpr.showNonPersonalizedAdBanner(ad);
         }
-    }
-
-    @Override
-    public boolean isRTL(Locale locale) {
-        final int directionality = Character.getDirectionality(locale.getDisplayName().charAt(0));
-        return directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT ||
-                directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC;
     }
 
     @Override
@@ -128,10 +112,5 @@ public class MainPresenter implements MainContract.Presenter {
         results.putStringArrayListExtra("times", times);
         results.putExtra("alarm", isAlarm);
         mView.startActivity(results);
-    }
-
-    @Override
-    public Config getConfig() {
-        return config;
     }
 }

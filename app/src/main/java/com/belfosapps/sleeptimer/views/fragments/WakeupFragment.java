@@ -37,7 +37,7 @@ public class WakeupFragment extends Fragment {
 
     /**************************************** Click Listeners *************************************/
     @OnClick(R.id.wake_up_calculate)
-    public void calculate() {
+    void calculate() {
         String time = hoursPicker.getValue() + ":" + minutesPicker.getValue() + " " + am_pm[am_pmPicker.getValue()];
         mPresenter.calculateTime(time, false);
     }

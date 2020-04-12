@@ -1,6 +1,7 @@
 package com.belfosapps.sleeptimer.views.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,8 +28,8 @@ public class SleepFragment extends Fragment {
 
     /**************************************** Click Listeners *************************************/
     @OnClick(R.id.sleep_calculate)
-    public void calculate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm aa");
+    void calculate() {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("hh:mm aa");
         mPresenter.calculateTime(sdf.format(new Date()), true);
     }
 
@@ -53,7 +54,5 @@ public class SleepFragment extends Fragment {
 
         return view;
     }
-
-    /****************************************** Methods *******************************************/
 
 }

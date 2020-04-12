@@ -26,13 +26,11 @@ public class GDPR {
     private ConsentForm form;
     private Context mContext;
     private SharedPreferencesHelper sharedPreferencesHelper;
-    private Config config;
 
-    public GDPR(SharedPreferencesHelper sharedPreferencesHelper, ConsentForm form, Context mContext, Config config) {
+    public GDPR(SharedPreferencesHelper sharedPreferencesHelper, ConsentForm form, Context mContext) {
         this.mContext = mContext;
         this.form = form;
         this.sharedPreferencesHelper = sharedPreferencesHelper;
-        this.config = config;
     }
 
     /**

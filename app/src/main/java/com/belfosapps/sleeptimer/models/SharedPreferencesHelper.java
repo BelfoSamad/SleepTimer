@@ -27,18 +27,6 @@ public class SharedPreferencesHelper {
 
 
     /************************************* Extra Methods ******************************************/
-
-    //Permissions
-    public void firstTimeAskingPermission(String permission) {
-        SharedPreferences.Editor editor;
-        editor = sharedPref.edit();
-        editor.putBoolean(permission, false).apply();
-    }
-
-    public boolean isFirstTimeAskingPermission(String permission) {
-        return sharedPref != null && sharedPref.getBoolean(permission, true);
-    }
-
     //Ad Personalization
     public void setAdPersonalized(boolean isPersonalized) {
         SharedPreferences.Editor editor;

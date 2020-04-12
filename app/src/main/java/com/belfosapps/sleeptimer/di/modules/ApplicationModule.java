@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 
 import com.belfosapps.sleeptimer.di.annotations.ApplicationContext;
 import com.belfosapps.sleeptimer.models.SharedPreferencesHelper;
-import com.belfosapps.sleeptimer.utils.Config;
 import com.belfosapps.sleeptimer.utils.GDPR;
 import com.google.ads.consent.ConsentForm;
 import com.google.gson.Gson;
@@ -75,13 +74,6 @@ public class ApplicationModule {
     /*
         Utils
      */
-    @Provides
-    @Singleton
-    Config providesConfig(){
-        SharedPreferences preferences = mApplication.getSharedPreferences("CONFIG", Context.MODE_PRIVATE);
-        return new Config(preferences);
-    }
-
     @Provides
     @Singleton
     GDPR providesGDPR(SharedPreferencesHelper sharedPreferencesHelper, Config config) {

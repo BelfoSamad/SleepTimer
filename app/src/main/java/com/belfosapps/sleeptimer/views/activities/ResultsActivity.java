@@ -1,7 +1,5 @@
 package com.belfosapps.sleeptimer.views.activities;
 
-import android.app.AlarmManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,31 +13,16 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.belfosapps.sleeptimer.R;
-import com.belfosapps.sleeptimer.contracts.ResultsContract;
-import com.belfosapps.sleeptimer.di.components.DaggerMVPComponent;
-import com.belfosapps.sleeptimer.di.components.MVPComponent;
-import com.belfosapps.sleeptimer.di.modules.ApplicationModule;
-import com.belfosapps.sleeptimer.di.modules.MVPModule;
-import com.belfosapps.sleeptimer.pojo.Time;
-import com.belfosapps.sleeptimer.presenters.ResultsPresenter;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ResultsActivity extends AppCompatActivity implements ResultsContract.View {
-
+public class ResultsActivity extends AppCompatActivity {
     private static final String TAG = "ResultsActivity";
     /**************************************** Declarations ****************************************/
-    private MVPComponent mvpComponent;
-    @Inject
-    ResultsPresenter mPresenter;
     private ArrayList<String> times;
 
     /**************************************** View Declarations ***********************************/
@@ -77,31 +60,11 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        //Initialize Dagger For Application
-        mvpComponent = getComponent();
-        //Inject the Component Here
-        mvpComponent.inject(this);
-
         //Set ButterKnife
         ButterKnife.bind(this);
 
-        //Attach View To Presenter
-        mPresenter.attach(this);
-
         //Init UI
         initUI();
-    }
-
-    @Override
-    public MVPComponent getComponent() {
-        if (mvpComponent == null) {
-            mvpComponent = DaggerMVPComponent
-                    .builder()
-                    .applicationModule(new ApplicationModule(getApplication()))
-                    .mVPModule(new MVPModule(this))
-                    .build();
-        }
-        return mvpComponent;
     }
 
     /**************************************** Methods *********************************************/

@@ -7,8 +7,6 @@ import android.content.Context;
 import com.belfosapps.sleeptimer.di.annotations.ActivityContext;
 import com.belfosapps.sleeptimer.models.SharedPreferencesHelper;
 import com.belfosapps.sleeptimer.presenters.MainPresenter;
-import com.belfosapps.sleeptimer.presenters.ResultsPresenter;
-import com.belfosapps.sleeptimer.utils.Config;
 import com.belfosapps.sleeptimer.utils.GDPR;
 
 import javax.inject.Singleton;
@@ -42,14 +40,7 @@ public class MVPModule {
     @Provides
     @Singleton
     MainPresenter providesMainPresenter(SharedPreferencesHelper sharedPreferencesHelper,
-                                        Config config,
                                         GDPR gdpr) {
-        return new MainPresenter(sharedPreferencesHelper, config, gdpr);
-    }
-
-    @Provides
-    @Singleton
-    ResultsPresenter providesResultsPresenter() {
-        return new ResultsPresenter();
+        return new MainPresenter(sharedPreferencesHelper, gdpr);
     }
 }

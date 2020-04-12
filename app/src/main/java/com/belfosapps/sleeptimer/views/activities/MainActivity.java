@@ -5,7 +5,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.belfosapps.sleeptimer.R;
@@ -40,8 +39,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Inject
     MainPresenter mPresenter;
     private MainPagerAdapter mAdapter;
-    private WakeupFragment wakeup;
-    private SleepFragment sleep;
 
     /**************************************** View Declarations ***********************************/
     //View Pages
@@ -127,8 +124,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void initViewPager() {
         ArrayList<Fragment> fragments = new ArrayList<>();
 
-        wakeup = new WakeupFragment(mPresenter);
-        sleep = new SleepFragment(mPresenter);
+        WakeupFragment wakeup = new WakeupFragment(mPresenter);
+        SleepFragment sleep = new SleepFragment(mPresenter);
 
         fragments.add(wakeup);
         fragments.add(sleep);

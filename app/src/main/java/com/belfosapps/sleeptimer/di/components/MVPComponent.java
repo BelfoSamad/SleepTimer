@@ -18,7 +18,6 @@ public interface MVPComponent {
 
     //Inject in Activities
     void inject(MainActivity mainActivity);
-    void inject(ResultsActivity resultsActivity);
 
     //Context
     @ActivityContext
