@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 
 public class SharedPreferencesHelper {
-    private static final String NOTES = "Notes";
-    private static final String DARK_MODE = "Dark Mode";
     private static final String PERSONALIZED_ADS = "AD";
 
     /************************************* Declarations *******************************************/
@@ -20,13 +18,6 @@ public class SharedPreferencesHelper {
     }
 
     /************************************* Methods ***********************************************/
-
-    private boolean isEmpty(String mode) {
-        return sharedPref.getString(mode, null) == null;
-    }
-
-
-    /************************************* Extra Methods ******************************************/
     //Ad Personalization
     public void setAdPersonalized(boolean isPersonalized) {
         SharedPreferences.Editor editor;

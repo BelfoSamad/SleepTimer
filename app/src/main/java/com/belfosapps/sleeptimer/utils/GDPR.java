@@ -1,6 +1,5 @@
 package com.belfosapps.sleeptimer.utils;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,9 +26,8 @@ public class GDPR {
     private Context mContext;
     private SharedPreferencesHelper sharedPreferencesHelper;
 
-    public GDPR(SharedPreferencesHelper sharedPreferencesHelper, ConsentForm form, Context mContext) {
+    public GDPR(SharedPreferencesHelper sharedPreferencesHelper,Context mContext) {
         this.mContext = mContext;
-        this.form = form;
         this.sharedPreferencesHelper = sharedPreferencesHelper;
     }
 
@@ -79,7 +77,7 @@ public class GDPR {
         });
     }
 
-    private void requestConsent() {
+    public void requestConsent() {
         Log.d(TAG, "requestConsent: Requesting Consent");
         URL privacyUrl = null;
         try {

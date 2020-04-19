@@ -18,11 +18,8 @@ import java.util.Date;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SleepFragment extends Fragment {
-
+    private static final String TAG = "SleepFragment";
     /****************************************** Declarations **************************************/
     private MainPresenter mPresenter;
 

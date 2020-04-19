@@ -4,6 +4,7 @@
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#8e44ad</color>
+
     <!-- Other Colors -->
     <color name="iconColor">#FFFFFF</color>
     <color name="primaryTextColor">#FFFFFF</color>

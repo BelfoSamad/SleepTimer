@@ -25,7 +25,6 @@ public class ApplicationModule {
 
     //Declarations
     private final Application mApplication;
-    private ConsentForm form;
 
     //Constructor
     public ApplicationModule(Application mApplication) {
@@ -52,7 +51,6 @@ public class ApplicationModule {
     /*
         Models
      */
-
     @Provides
     @Singleton
     Gson provideGson() {
@@ -77,6 +75,6 @@ public class ApplicationModule {
     @Provides
     @Singleton
     GDPR providesGDPR(SharedPreferencesHelper sharedPreferencesHelper) {
-        return new GDPR(sharedPreferencesHelper,form, mApplication);
+        return new GDPR(sharedPreferencesHelper, mApplication);
     }
 }

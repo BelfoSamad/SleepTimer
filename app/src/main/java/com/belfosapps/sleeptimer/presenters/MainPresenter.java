@@ -2,6 +2,7 @@ package com.belfosapps.sleeptimer.presenters;
 
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.belfosapps.sleeptimer.R;
 import com.belfosapps.sleeptimer.contracts.MainContract;
@@ -9,6 +10,7 @@ import com.belfosapps.sleeptimer.models.SharedPreferencesHelper;
 import com.belfosapps.sleeptimer.utils.GDPR;
 import com.belfosapps.sleeptimer.views.activities.MainActivity;
 import com.belfosapps.sleeptimer.views.activities.ResultsActivity;
+import com.google.ads.consent.ConsentInformation;
 import com.google.android.gms.ads.AdView;
 
 import java.text.ParseException;
@@ -57,6 +59,16 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
+    public void requestGDPR() {
+        if (ConsentInformation.getInstance(mView)
+                .isRequestLocationInEeaOrUnknown()) {
+            Log.d(TAG, "requestGDPR");
+            gdpr.requestConsent();
+        } else
+            Toast.makeText(mView, mView.getResources().getString(R.string.gdpr_msg), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void loadAd(AdView ad) {
         if (sharedPreferencesHelper.isAdPersonalized()) {
             gdpr.showPersonalizedAdBanner(ad);
@@ -67,15 +79,14 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void calculateTime(String time, boolean isAlarm) {
-
-        Log.d(TAG, "calculateTime: " + time);
-
+        //Init
         ArrayList<String> times = new ArrayList<>();
         SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
         Calendar cal = Calendar.getInstance();
         Date d;
 
         if (isAlarm) {
+            //If I sleep now, when should I wake up
             try {
                 d = df.parse(time);
                 cal.setTime(d);
@@ -88,13 +99,13 @@ public class MainPresenter implements MainContract.Presenter {
                 e.printStackTrace();
             }
         } else {
+            //If I want to wake up at X, when should I sleep
             try {
                 d = df.parse(time);
                 cal.setTime(d);
                 cal.add(Calendar.MINUTE, -180);
                 for (int i = 0; i < 4; i++) {
                     cal.add(Calendar.MINUTE, -90);
-                    Log.d(TAG, "calculateTime: " + df.format(cal.getTime()));
                     times.add(df.format(cal.getTime()));
                 }
             } catch (ParseException e) {
@@ -102,13 +113,13 @@ public class MainPresenter implements MainContract.Presenter {
             }
         }
 
+        //Go to ResultsActivity
         goToResults(times, isAlarm);
     }
 
     @Override
     public void goToResults(ArrayList<String> times, boolean isAlarm) {
         Intent results = new Intent(mView, ResultsActivity.class);
-        Log.d(TAG, "goToResults: " + times.size());
         results.putStringArrayListExtra("times", times);
         results.putExtra("alarm", isAlarm);
         mView.startActivity(results);

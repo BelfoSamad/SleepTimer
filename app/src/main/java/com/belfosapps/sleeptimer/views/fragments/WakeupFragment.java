@@ -18,11 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class WakeupFragment extends Fragment {
-
+    private static final String TAG = "WakeupFragment";
     /****************************************** Declarations **************************************/
     private MainPresenter mPresenter;
     private String[] am_pm = {"AM", "PM"};
@@ -69,16 +66,19 @@ public class WakeupFragment extends Fragment {
     /****************************************** Methods *******************************************/
     @SuppressLint("DefaultLocale")
     private void initUI() {
+        //Set Hours
         hoursPicker.setMinValue(1);
         hoursPicker.setMaxValue(12);
         hoursPicker.setFormatter(i -> String.format("%02d", i));
+
+        //Set Minutes
         minutesPicker.setMinValue(0);
         minutesPicker.setMaxValue(59);
         minutesPicker.setFormatter(i -> String.format("%02d", i));
+
+        //Set AM-PM
         am_pmPicker.setMinValue(0);
         am_pmPicker.setMaxValue(1);
-
-
         am_pmPicker.setDisplayedValues(am_pm);
     }
 

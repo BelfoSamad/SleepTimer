@@ -2,22 +2,39 @@
     <!-- Basics -->
     <string name="app_name">SleepTimer</string>
     <string name="APPLICATION_ID">ca-app-pub-2106508532272950~7395652718</string>
-    <string name="ADMOB_BANNER_ID">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="AD_BANNER_ID">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="INTERSTITIAL_AD_ID">ca-app-pub-3940256099942544/1033173712</string>
     <string name="PUBLISHER_ID">pub-4679171106713552</string>
-    <item name="GDPR_Enabled" type="bool">true</item>
-    <item name="AD_BANNER_Enabled" type="bool">true</item>
+    <item name="GDPR_Enabled" type="bool">false</item>
+    <string name="gdpr_msg">GDPR isn\'t required in your country</string>
+    <item name="AD_BANNER_Enabled" type="bool">false</item>
+    <item name="INTERSTITIAL_AD_Enabled" type="bool">false</item>
     <string-array name="tab_titles">
         <item>Wake Up</item>
         <item>Sleep</item>
     </string-array>
+
+    <!-- Developer Info -->
+    <string name="developer_name">ss</string>
+    <string name="developer_email">email</string>
+
+    <!-- Menu -->
+    <string name="rate_app">Rate The App</string>
+    <string name="check_apps">Check Other Apps</string>
+    <string name="feedback">Your Feedback</string>
+    <string name="email_client">No Email client</string>
+    <string name="request_gdpr">Request GDPR</string>
+
     <!-- Main Page -->
     <string name="sleep_text">If I sleep Now, I should wake up at:</string>
     <string name="wake_up_text">I want to wake up at:</string>
     <string name="calculate">Calculate</string>
+
     <!-- Time Picker -->
     <string name="hours">Hours</string>
     <string name="minutes">Minutes</string>
     <string name="am_pm">AM/PM</string>
+
     <!-- Results Page -->
     <string name="sleep_result_text">If you sleep right now, you should wake up at one of the following times:</string>
     <string name="wakeup_result_text">You should try to sleep in the following times:</string>

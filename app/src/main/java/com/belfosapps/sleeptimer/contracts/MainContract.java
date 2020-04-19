@@ -6,12 +6,13 @@ import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
-
 public interface MainContract {
 
     interface Presenter extends BasePresenter<View> {
 
         void checkGDPRConsent();
+
+        void requestGDPR();
 
         void loadAd(AdView ad);
 
